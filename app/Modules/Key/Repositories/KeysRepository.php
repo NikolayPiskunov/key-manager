@@ -6,7 +6,7 @@ use App\Main\Repository;
 use App\Models\Key;
 use Illuminate\Database\Eloquent\Builder;
 
-class KeysRepository extends Repository
+final class KeysRepository extends Repository
 {
     public function find(string $key): ?Key
     {

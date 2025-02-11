@@ -5,7 +5,7 @@ namespace App\Modules\Key\Actions;
 use App\Modules\Key\Presenters\KeysPresenter;
 use App\Modules\Key\Repositories\KeysRepository;
 
-readonly class ShowKeyAction
+final readonly class ShowKeyAction
 {
     public function __construct(
         private KeysRepository $keysRepository,
