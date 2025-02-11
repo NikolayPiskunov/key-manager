@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\App;
-use App\Models\Key;
-use Illuminate\Http\Request;
+use App\Modules\Key\Actions\ShowKeyAction;
+use Illuminate\Http\JsonResponse;
 
-class KeyController extends Controller
+final class KeyController extends ApiController
 {
-    //
-
-    public function index()
+    public function __construct(
+        private readonly ShowKeyAction $showKeyAction,
+    )
     {
-        $app = App::first();
-        dd($app->tariffs);
-        $keys = Key::all();
+        //
+    }
 
-        dd($keys);
+    public function index(string $key): JsonResponse
+    {
+        try {
+            $keyData = ($this->showKeyAction)($key);
+        } catch (\Throwable $exception) {
+            return $this->sendError('Not Found', 404);
+        }
+
+        return $this->sendSuccess($keyData);
     }
 }

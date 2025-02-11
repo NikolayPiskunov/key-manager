@@ -16,6 +16,9 @@ use Illuminate\Support\Str;
  * @property string $key
  * @property Carbon $expire_at
  * @property Tariff $tariff
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ *
  * @property App $app
  */
 class Key extends Model
@@ -32,7 +35,9 @@ class Key extends Model
     protected function casts(): array
     {
         return [
+            'expire_at' => 'datetime',
             'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 
